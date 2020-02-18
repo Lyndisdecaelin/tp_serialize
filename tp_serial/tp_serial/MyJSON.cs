@@ -1,37 +1,44 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Reflection;
 
 public class MyJSON
 {
-
-    public static dynamic iter(FieldInfo p,dynamic o){
+    private static dynamic iter(dynamic o)
+    {
         dynamic res;
-        if(p.FieldType.IsPrimitive || p.FieldType == typeof(String)){
-                res = p.GetValue(o);
+        Type type = o.GetType();
+        if (type.IsPrimitive || type == typeof(string))
+        {
+            res = o;
+        }
+        else if (typeof(IEnumerable).IsAssignableFrom(type))
+        {
+            var array = new List<dynamic>();
+            foreach (var elem in o)
+            {
+                array.Add(iter(elem));
             }
-            else if(typeof(System.Collections.IEnumerable).IsAssignableFrom(p.FieldType)) {
-                res = new List<dynamic>();
-                foreach(var elem in p.GetValue(o)){
-                    res.add(iter(elem.GetType().GetField(), elem));
-                }
-            }
-            else{
-                res = serialize(p.GetValue(o));
-            }
+            res = array;
+        }
+        else
+        {
+            res = serialize(o);
+        }
 
         return res;
     }
-    public static Dictionary<String, dynamic> serialize(dynamic o)
+
+    public static Dictionary<string, dynamic> serialize(dynamic o)
     {
         Type type = o.GetType();
-        Dictionary<String, dynamic> json = new Dictionary<string, dynamic>();
+        var json = new Dictionary<string, dynamic>();
         var prop = type.GetFields(BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance);
         foreach (var p in prop)
         {
-            json[p.Name] = iter(p,o);
-        }
+            json[p.Name] = iter(p.GetValue(o));
+        } 
         return json;
     }
-
 }

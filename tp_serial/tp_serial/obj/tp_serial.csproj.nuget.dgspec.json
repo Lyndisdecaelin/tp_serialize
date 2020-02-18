@@ -1,27 +1,25 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\6b1c1\\Desktop\\isen\\prog avance\\tp2\\tp_serial\\tp_serial\\tp_serial.csproj": {}
+    "/home/ob/Documents/uqac/logiciel_avancee/tp_serialize/tp_serial/tp_serial/tp_serial.csproj": {}
   },
   "projects": {
-    "C:\\Users\\6b1c1\\Desktop\\isen\\prog avance\\tp2\\tp_serial\\tp_serial\\tp_serial.csproj": {
+    "/home/ob/Documents/uqac/logiciel_avancee/tp_serialize/tp_serial/tp_serial/tp_serial.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\6b1c1\\Desktop\\isen\\prog avance\\tp2\\tp_serial\\tp_serial\\tp_serial.csproj",
+        "projectUniqueName": "/home/ob/Documents/uqac/logiciel_avancee/tp_serialize/tp_serial/tp_serial/tp_serial.csproj",
         "projectName": "tp_serial",
-        "projectPath": "C:\\Users\\6b1c1\\Desktop\\isen\\prog avance\\tp2\\tp_serial\\tp_serial\\tp_serial.csproj",
-        "packagesPath": "C:\\Users\\6b1c1\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\6b1c1\\Desktop\\isen\\prog avance\\tp2\\tp_serial\\tp_serial\\obj\\",
+        "projectPath": "/home/ob/Documents/uqac/logiciel_avancee/tp_serialize/tp_serial/tp_serial/tp_serial.csproj",
+        "packagesPath": "/home/ob/.nuget/packages/",
+        "outputPath": "/home/ob/Documents/uqac/logiciel_avancee/tp_serialize/tp_serial/tp_serial/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\6b1c1\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+          "/home/ob/.config/NuGet/NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "netcoreapp3.1"
         ],
         "sources": {
-          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -52,7 +50,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.100\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "/usr/share/dotnet/sdk/3.1.101/RuntimeIdentifierGraph.json"
         }
       }
     }
