@@ -7,6 +7,9 @@ public class MyJSON
 {
     private static dynamic iter(dynamic o)
     {
+        if (o is null)
+            return "null";
+        
         dynamic res;
         Type type = o.GetType();
         if (type.IsPrimitive || type == typeof(string))
