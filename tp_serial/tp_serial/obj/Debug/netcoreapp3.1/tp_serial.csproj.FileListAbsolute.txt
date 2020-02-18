@@ -1,0 +1,11 @@
+C:\Users\6b1c1\Desktop\isen\prog avance\tp2\tp_serial\tp_serial\bin\Debug\netcoreapp3.1\tp_serial.exe
+C:\Users\6b1c1\Desktop\isen\prog avance\tp2\tp_serial\tp_serial\bin\Debug\netcoreapp3.1\tp_serial.deps.json
+C:\Users\6b1c1\Desktop\isen\prog avance\tp2\tp_serial\tp_serial\bin\Debug\netcoreapp3.1\tp_serial.runtimeconfig.json
+C:\Users\6b1c1\Desktop\isen\prog avance\tp2\tp_serial\tp_serial\bin\Debug\netcoreapp3.1\tp_serial.runtimeconfig.dev.json
+C:\Users\6b1c1\Desktop\isen\prog avance\tp2\tp_serial\tp_serial\bin\Debug\netcoreapp3.1\tp_serial.dll
+C:\Users\6b1c1\Desktop\isen\prog avance\tp2\tp_serial\tp_serial\bin\Debug\netcoreapp3.1\tp_serial.pdb
+C:\Users\6b1c1\Desktop\isen\prog avance\tp2\tp_serial\tp_serial\obj\Debug\netcoreapp3.1\tp_serial.csprojAssemblyReference.cache
+C:\Users\6b1c1\Desktop\isen\prog avance\tp2\tp_serial\tp_serial\obj\Debug\netcoreapp3.1\tp_serial.AssemblyInfoInputs.cache
+C:\Users\6b1c1\Desktop\isen\prog avance\tp2\tp_serial\tp_serial\obj\Debug\netcoreapp3.1\tp_serial.AssemblyInfo.cs
+C:\Users\6b1c1\Desktop\isen\prog avance\tp2\tp_serial\tp_serial\obj\Debug\netcoreapp3.1\tp_serial.dll
+C:\Users\6b1c1\Desktop\isen\prog avance\tp2\tp_serial\tp_serial\obj\Debug\netcoreapp3.1\tp_serial.pdb
