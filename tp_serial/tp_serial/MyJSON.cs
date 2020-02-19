@@ -5,7 +5,7 @@ using System.Reflection;
 
 public class MyJSON
 {
-    private static dynamic iter(dynamic o)
+    private static dynamic iter(dynamic o, String Name)
     {
         if (o is null)
             return "null";
@@ -15,13 +15,14 @@ public class MyJSON
         if (type.IsPrimitive || type == typeof(string))
         {
             res = o;
+            Console.WriteLine("Key : " + Name + " Value : " + o);
         }
         else if (typeof(IEnumerable).IsAssignableFrom(type))
         {
             var array = new List<dynamic>();
             foreach (var elem in o)
             {
-                array.Add(iter(elem));
+                array.Add(iter(elem, Name));
             }
             res = array;
         }
@@ -40,7 +41,7 @@ public class MyJSON
         var prop = type.GetFields(BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance);
         foreach (var p in prop)
         {
-            json[p.Name] = iter(p.GetValue(o));
+            json[p.Name] = iter(p.GetValue(o), p.Name);
         } 
         return json;
     }

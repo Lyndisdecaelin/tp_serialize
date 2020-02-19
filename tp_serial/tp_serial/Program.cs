@@ -74,12 +74,12 @@ namespace tp_serial
             // toto o = new toto();
             var o = new ComplexObject();
             var test = MyJSON.serialize(o);
-            string json = JsonConvert.SerializeObject(test, Formatting.Indented);
+            /*string json = JsonConvert.SerializeObject(test, Formatting.Indented);
             var foo = JsonConvert.DeserializeAnonymousType<Dictionary<String, dynamic>>(json,test);
             foreach (var kvp in foo)
             {
                 Console.WriteLine(kvp.Key + " : " + kvp.Value);
-            }
+            }*/
         
         }
         
