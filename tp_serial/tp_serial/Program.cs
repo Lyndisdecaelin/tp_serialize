@@ -1,10 +1,8 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
-using System.Linq.Expressions;
-using Microsoft.VisualBasic;
-using Microsoft.VisualBasic.CompilerServices;
 using Newtonsoft.Json;
-
+using Newtonsoft.Json.Serialization;
 namespace tp_serial
 {
 
@@ -75,8 +73,16 @@ namespace tp_serial
         {
             // toto o = new toto();
             var o = new ComplexObject();
-            var json = MyJSON.serialize(o);
-            Console.WriteLine("fin");
+            var test = MyJSON.serialize(o);
+            string json = JsonConvert.SerializeObject(test, Formatting.Indented);
+            var foo = JsonConvert.DeserializeAnonymousType<Dictionary<String, dynamic>>(json,test);
+            foreach (var kvp in foo)
+            {
+                Console.WriteLine(kvp.Key + " : " + kvp.Value);
+            }
+        
         }
+        
     }
+
 }
