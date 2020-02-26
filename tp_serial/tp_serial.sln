@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JsonEncoder", "JsonEncoder\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JsonEncoderTest", "JsonEncoderTest\JsonEncoderTest.csproj", "{F88F1A55-06DA-4A07-9DEC-7B5219DF90DE}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SmartHome", "SmartHome\SmartHome.csproj", "{8FFDAA54-D874-4E09-A5DB-585D97AEC5D4}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{F88F1A55-06DA-4A07-9DEC-7B5219DF90DE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F88F1A55-06DA-4A07-9DEC-7B5219DF90DE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F88F1A55-06DA-4A07-9DEC-7B5219DF90DE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8FFDAA54-D874-4E09-A5DB-585D97AEC5D4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8FFDAA54-D874-4E09-A5DB-585D97AEC5D4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8FFDAA54-D874-4E09-A5DB-585D97AEC5D4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8FFDAA54-D874-4E09-A5DB-585D97AEC5D4}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
