@@ -1,28 +1,27 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Serialization;
-namespace tp_serial
-{
 
-    public class titi
+
+namespace JsonEncoderTest
+{
+    public class Titi
     {
-        String name = "titiiiiiii";
+        string name = "titiiiiiii";
     }
-    public class toto
+    
+    public class Toto
     {
         public short i = 42;
-        public titi B = new titi();
+        public Titi B = new Titi();
 
-        private List<String> table = new List<String>{"un","deux","trois" };
+        private List<string> table = new List<string>{"un","deux","trois" };
         
-        private String name = "mon nom";
+        private string name = "mon nom";
 
         protected bool yes = true;
     }
 
-    internal class totoInternal : toto
+    internal class TotoInternal : Toto
     {
         private int inheritField = 15;
     }
@@ -37,12 +36,12 @@ namespace tp_serial
         private String stringB = "my second string";
         private Func<string, string> myLambda = a => a.ToString();
         
-        protected List<toto> listA = new List<toto> {new totoInternal(), new toto(), new toto(), new toto()};
+        protected List<Toto> listA = new List<Toto> {new TotoInternal(), new Toto(), new Toto(), new Toto()};
         
-        private Dictionary<string, toto> mapA = new Dictionary<string, toto>
+        private Dictionary<string, Toto> mapA = new Dictionary<string, Toto>
         {
-            {"a", new toto()},
-            {"b", new totoInternal()},
+            {"a", new Toto()},
+            {"b", new TotoInternal()},
             {"c", null}
         };
         
@@ -50,7 +49,7 @@ namespace tp_serial
         {
             {1, null},  
             {2, "a"},
-            {3, new totoInternal()},
+            {3, new TotoInternal()},
             {4, "eeee"},
             {5, 5},
             {6, new String("my string 6")},
@@ -73,16 +72,9 @@ namespace tp_serial
         {
             // toto o = new toto();
             var o = new ComplexObject();
-            var test = MyJSON.serialize(o);
-            /*string json = JsonConvert.SerializeObject(test, Formatting.Indented);
-            var foo = JsonConvert.DeserializeAnonymousType<Dictionary<String, dynamic>>(json,test);
-            foreach (var kvp in foo)
-            {
-                Console.WriteLine(kvp.Key + " : " + kvp.Value);
-            }*/
-        
+            var test = MyJSON.Serialize(o);
+            Console.WriteLine();
         }
         
     }
-
 }

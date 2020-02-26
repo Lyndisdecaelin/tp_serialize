@@ -3,7 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.29613.14
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "tp_serial", "tp_serial\tp_serial.csproj", "{4942D38D-778A-4211-9554-B0A42F6826B3}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JsonEncoder", "JsonEncoder\JsonEncoder.csproj", "{4942D38D-778A-4211-9554-B0A42F6826B3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JsonEncoderTest", "JsonEncoderTest\JsonEncoderTest.csproj", "{F88F1A55-06DA-4A07-9DEC-7B5219DF90DE}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,10 @@ Global
 		{4942D38D-778A-4211-9554-B0A42F6826B3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4942D38D-778A-4211-9554-B0A42F6826B3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4942D38D-778A-4211-9554-B0A42F6826B3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F88F1A55-06DA-4A07-9DEC-7B5219DF90DE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F88F1A55-06DA-4A07-9DEC-7B5219DF90DE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F88F1A55-06DA-4A07-9DEC-7B5219DF90DE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F88F1A55-06DA-4A07-9DEC-7B5219DF90DE}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
