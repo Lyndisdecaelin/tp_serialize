@@ -6,78 +6,109 @@ using System.Threading;
 
 namespace SmartHome
 {
+    /// <summary>
+    /// Add, remove and update sensors
+    ///
+    /// Automatically create visualizer for the added sensor, and if necessary a converter too
+    /// </summary>
     public class SensorsManager
     {
-        private Dictionary<Sensor, Visualizer> _sensors;
-        private Dictionary<SensorUnit, Type> _converters;
-
-        private VisualizerBuilder _visualizerBuilder;
+        // Sensors with their visualizers
+        private Dictionary<ISensor, IVisualizer> _sensors;
+        
+        // Converters supported by the program (types)
+        private Dictionary<MeasureUnit, Type> _converters;
+        
+        private VisualizerManager _visualizerManager;
+        
+        
         public SensorsManager()
         {
-            _visualizerBuilder = new VisualizerBuilder();
-            _sensors = new Dictionary<Sensor, Visualizer>();
-            _converters = new Dictionary<SensorUnit, Type>();
+            _sensors = new Dictionary<ISensor, IVisualizer>();
+            _converters = new Dictionary<MeasureUnit, Type>();
+            _visualizerManager = new VisualizerManager();
+            RetrieveAllConverters();
+            new Thread(Sense).Start();
+        }
+        
+        
+        /// <summary>
+        /// 1. Read sensor metadata (unit, type)
+        /// 2. Create a visualizer for this sensor
+        /// 3. If the type of the visualizer is not the same as the sensor type, a converter is used to wrap the sensor
+        /// </summary>
+        public void AddSensor(ISensor sensor)
+        {
+            var measureCharacteristic = GetSensorCharacteristic(sensor);
+            var visualizer = _visualizerManager.BuildVisualizer(measureCharacteristic.type, measureCharacteristic.unit);
+            sensor = WrapSensorIfNecessary(sensor, visualizer);
             
-            var threadRef = new ThreadStart(Sense);
-            var thread = new Thread(threadRef);
-            thread.Start();
-            
+            visualizer.SetSensor(sensor);
+            _sensors[sensor] = visualizer;
+        }
+
+
+        public void RemoveSensor(ISensor sensor)
+        {
+            _sensors.Remove(sensor);
+        }
+
+        
+        private MeasureCharacteristic GetSensorCharacteristic(ISensor sensor)
+        {
+            var attributes = TypeDescriptor.GetAttributes(sensor);
+            MeasureCharacteristic measureCharacteristic = null;
+            foreach (var attr in attributes)
+            {
+                if (attr.GetType() == typeof(MeasureCharacteristic))
+                {
+                    measureCharacteristic = (MeasureCharacteristic) attr;
+                    break;
+                }
+            }
+            return measureCharacteristic;
+        }
+        
+
+        private ISensor WrapSensorIfNecessary(ISensor sensor, IVisualizer visualizer)
+        {
+            var sensorCharacteristic = GetSensorCharacteristic(sensor);
+            var visualizerAttribute = (MeasureCharacteristic) Attribute.GetCustomAttribute(visualizer.GetType(), typeof (MeasureCharacteristic));
+            if (visualizerAttribute.unit != sensorCharacteristic.unit)
+            {
+                var converter = _converters[sensorCharacteristic.unit];
+                sensor = (Converter) Activator.CreateInstance(converter, sensor);
+                Console.WriteLine($"Apply converter : {converter}");
+            }
+            return sensor;
+        }
+        
+        
+        private void RetrieveAllConverters()
+        {
             var assemblies = AppDomain.CurrentDomain.GetAssemblies();
-            
             foreach (var assembly in assemblies)
             {
                 var assemblyTypes = assembly.GetTypes();
 
                 foreach (var type in assemblyTypes)
                 {
-                    if (type.IsDefined(typeof(ConverterAttribute), true))
+                    if (typeof(Converter).IsAssignableFrom(type) && type.IsDefined(typeof(ConverterAttribute), true))
                     {
                         var attr = (ConverterAttribute) Attribute.GetCustomAttribute(type, typeof (ConverterAttribute));
                         _converters[attr.From] = type;
                     }
                 }
             }
-            Console.WriteLine();
         }
         
-
         
-        public void AddSensor(Sensor sensor)
-        {
-            var attributes = TypeDescriptor.GetAttributes(sensor);
-            
-            foreach (var attr in attributes)
-            {
-                if (attr.GetType() == typeof(SensorAttribute))
-                {
-                    var sensorAttr = (SensorAttribute) attr;
-                    _visualizerBuilder.SetType(sensorAttr.type);
-                    _visualizerBuilder.SetUnit(sensorAttr.unit);
-                }
-            }
-            
-            // var converter = (Converter) Activator.CreateInstance(type);
-            
-            var visualizer = _visualizerBuilder.GetResult();
-            if (visualizer == null)
-                throw new Exception();
-            _sensors[sensor] = visualizer;
-        }
-
-        public void RemoveSensor(Sensor sensor)
-        {
-            _sensors.Remove(sensor);
-        }
-
         private void Sense()
         {
             while (true)
             {
                 foreach (var s in _sensors)
-                {
-                    var measure = s.Key.GetMeasure();
-                    s.Value.Display(measure);
-                }
+                    s.Value.Update();
                 Thread.Sleep(500);
             }
         }

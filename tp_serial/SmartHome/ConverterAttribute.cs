@@ -2,12 +2,15 @@ using System;
 
 namespace SmartHome
 {
+    /// <summary>
+    /// Meta-data of a converter (input unit, output unit)
+    /// </summary>
     public class ConverterAttribute : Attribute
     {
-        public SensorUnit From;
-        public SensorUnit To;
+        public MeasureUnit From;
+        public MeasureUnit To;
 
-        public ConverterAttribute(SensorUnit from, SensorUnit to)
+        public ConverterAttribute(MeasureUnit from, MeasureUnit to)
         {
             From = from;
             To = to;

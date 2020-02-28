@@ -2,11 +2,18 @@ using System;
 
 namespace SmartHome
 {
-    public class Sensor
+    public interface ISensor
     {
-        public virtual double GetMeasure()
-        {
-            return (new Random()).Next(100);
-        }
+        public double GetMeasure();
+    }
+
+    class TempSensor : ISensor
+    {
+        public double GetMeasure() => new Random().Next(100);
+    }
+
+    class PressureSensor : ISensor
+    {
+        public double GetMeasure() =>  new Random().Next(10);
     }
 }

@@ -4,46 +4,49 @@ using System.Collections.Generic;
 using System.Reflection;
 
 
-public class MyJSON
+namespace JsonEncoder
 {
-    private static dynamic Iter(dynamic o, string name)
+    public static class MyJSON
     {
-        if (o is null)
-            return "null";
-        
-        dynamic res;
-        Type type = o.GetType();
-        if (type.IsPrimitive || type == typeof(string))
+        private static dynamic Iter(dynamic o, string name, int level)
         {
-            res = o;
-            Console.WriteLine("Key : " + name + " Value : " + o);
-        }
-        else if (typeof(IEnumerable).IsAssignableFrom(type))
-        {
-            var array = new List<dynamic>();
-            foreach (var elem in o)
+            dynamic res;
+            Type type = o?.GetType();
+            if (o is null ||  type.IsPrimitive || type == typeof(string))
             {
-                array.Add(Iter(elem, name));
+                res = o;
+                Console.WriteLine(new string(' ', level*2) + name + " : " + (o??"null"));
             }
-            res = array;
-        }
-        else
-        {
-            res = Serialize(o);
+            else if (typeof(IEnumerable).IsAssignableFrom(type))
+            {
+                var array = new List<dynamic>();
+                Console.WriteLine(new string(' ', level*4) + name + " : ");
+                foreach (var elem in o)
+                {
+                    array.Add(Iter(elem, null, level));
+                }
+                res = array;
+            }
+            else
+            {
+                Console.WriteLine(new string(' ', level*4) + name + " : ");
+                res = Serialize(o, ++level);
+            }
+            return res;
         }
 
-        return res;
-    }
 
-    public static Dictionary<string, dynamic> Serialize(dynamic o)
-    {
-        Type type = o.GetType();
-        var json = new Dictionary<string, dynamic>();
-        var prop = type.GetFields(BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance);
-        foreach (var p in prop)
+        
+        public static Dictionary<string, dynamic> Serialize(dynamic o, int level = 0)
         {
-            json[p.Name] = Iter(p.GetValue(o), p.Name);
-        } 
-        return json;
+            Type type = o.GetType();
+            var json = new Dictionary<string, dynamic>();
+            var prop = type.GetFields(BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance);
+            foreach (var p in prop)
+            {
+                json[p.Name] = Iter(p.GetValue(o), p.Name, level);
+            }
+            return json;
+        }
     }
 }

@@ -6,7 +6,7 @@
     </PropertyGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\JsonEncoder\JsonEncoder.csproj" />
+      <ProjectReference Include="..\SmartHome\SmartHome.csproj" />
     </ItemGroup>
 
 </Project>

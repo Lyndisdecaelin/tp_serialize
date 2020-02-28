@@ -2,16 +2,45 @@ using System;
 
 namespace SmartHome
 {
-    public class Visualizer
+    public interface IVisualizer
     {
-        public SensorUnit unit;
-        public SensorType type;
+        public void Update();
 
-        public void Display(double measure)
+        public void SetSensor(ISensor sensor);
+    }
+
+    
+    [MeasureCharacteristic(MeasureUnit.Celsius, MeasureType.Temp)]
+    class TempVisualizer : IVisualizer
+    {
+        private ISensor _sensor;
+
+        public void Update()
         {
-            Console.WriteLine($"{type.ToString()} : {measure} {unit.ToString()}");
+            Console.WriteLine("Temp " +_sensor.GetMeasure() + " °C");
+        }
+
+        public void SetSensor(ISensor sensor)
+        {
+            _sensor = sensor;
         }
     }
+
     
-    
+    [MeasureCharacteristic(MeasureUnit.Bar, MeasureType.Pressure)]
+    class PressureVisualizer : IVisualizer
+    {
+        private ISensor _sensor;
+        
+
+        public void Update()
+        {
+            Console.WriteLine("Pressure " + _sensor.GetMeasure() + " bar");
+        }
+        
+        public void SetSensor(ISensor sensor)
+        {
+            _sensor = sensor;
+        }
+    }
 }
