@@ -28,6 +28,7 @@ Les afficheurs sont créés par le gestionnaire des capteurs grâce à la classe
 **Convertisseur :** Les afficheurs construits grâce au `VisualizerManager` ne supportent pas forcement l'unité du capteur (en réalité, il n'y a que des afficheurs utilisant le système internationnal). Le gestionnaire des capteurs se chargera alors de wrapper le capteur dans un objet `Converter` qui sera du coup le nouveau capteur et qui se chargera de convertir l'unité d'un capteur en une nouvelle unité. Ces convertisseurs sont automatiquement cherchés par le gestionnaire des capteurs lors de sa création grâce à l'Attribut `ConverterAttribute` que possède les capteurs (unité d'entrée, unité de sortie).
 *Note: les afficheurs sont déclarés dans le fichier `Converter.cs`*
 
+![](uml.png)
 
 Utilisation côté client :
 ```csharp
