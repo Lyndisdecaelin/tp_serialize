@@ -29,8 +29,20 @@ namespace SmartHome
             return measure * (9/5.0) + 32;
         }
     }
-    
-    
+
+    [ConverterAttribute(from: MeasureUnit.Celsius, to: MeasureUnit.Fahrenheit)]
+    public class FahrenheitToCelsius : Converter
+    {
+        public FahrenheitToCelsius(ISensor sensor) : base(sensor) { }
+
+        public override double GetMeasure()
+        {
+            var measure = convertedSensor.GetMeasure();
+            return (measure -32 ) * (5.0/9.0);
+        }
+    }
+
+
     [ConverterAttribute(from: MeasureUnit.InchOfMercury, to: MeasureUnit.Bar)]
     public class InchOfMercuryToBar : Converter
     {
@@ -40,6 +52,18 @@ namespace SmartHome
         {
             var measure = convertedSensor.GetMeasure();
             return measure / 29.53;
+        }
+    }
+
+    [ConverterAttribute(from: MeasureUnit.Bar, to: MeasureUnit.InchOfMercury)]
+    public class BarToInchOfMercury : Converter
+    {
+        public BarToInchOfMercury(ISensor sensor) : base(sensor) { }
+
+        public override double GetMeasure()
+        {
+            var measure = convertedSensor.GetMeasure();
+            return measure * 29.53;
         }
     }
 }
