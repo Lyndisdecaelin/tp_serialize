@@ -1,6 +1,6 @@
 # TP Introspection
 
-## Encodeur JSON
+## JsonEncoder
 
 Librairie : `JsonEncoder.dll`
 
@@ -10,7 +10,9 @@ Dictionnary<string, dynamic> result = MyJSON.Serialize(myObject);
 ```
 
 
-## Flux de données dynamiques
+## SmartHome
+
+Librairie : `SmartHome.dll`
 
 **Capteurs :** les capteurs implémentent l'interface `ISensor`.  
 Des capteurs du système impérial et du système internationnal peuvent être créés par un client avec les factory `ImperialSensorCreator` et `CreatePressureSensor`. Ces factory ajoutent lors de la création des capteurs un attribut d'instance `MeasureCharacteristic` contenant les meta-données des capteurs : type et unité.  
@@ -27,7 +29,7 @@ Les afficheurs sont créés par le gestionnaire des capteurs grâce à la classe
 *Note: les afficheurs sont déclarés dans le fichier `Converter.cs`*
 
 
-Utilisation côté client (librairie : `SmartHome.dll`) :
+Utilisation côté client :
 ```csharp
 var sensorManager = new SensorsManager();
 var imperialCreator = new ImperialSensorCreator();
